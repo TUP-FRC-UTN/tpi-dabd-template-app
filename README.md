@@ -1,27 +1,49 @@
-# TemplateApp
+# Creación y Publicación de Librerías
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+En caso de necesitar proveer componentes, servicios u otro tipo de elementos a otros grupos, será necesario crear una librería que albergará los mismos. Esta será publicada en npm de manera pública para que todos aquellos interesados puedan utilizar de manera sencilla y estable los elementos que deseen.
 
-## Development server
+## Pasos para crear y publicar una librería en Angular
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. **Crear proyecto tipo librería:**
+```bash
+ng generate library NOMBRE_LIBRERIA
+```
+El NOMBRE_LIBRERIA deberá tener el siguiente formato: `ngx-dabd-nombre-equipo`
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. **Agregar los elementos que se deseen exportar:**  
+   Recordar que deben ser exportados en el archivo `public_api.ts` para que puedan ser utilizados por aquellos que se van a instalar la librería, de ahora en más llamados "clientes".
 
-## Build
+3. **Compilar la librería antes de publicar:**  
+Es necesario compilar con el comando:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+ng build NOMBRE_LIBRERIA
+```
 
-## Running unit tests
+4. **Publicar la librería:**
+   - Es necesario crearse una cuenta en [npm](https://www.npmjs.com/).
+   - Luego, en la consola de comandos, ejecutar:
+     ```bash
+     npm login
+     ```
+     Esto solicitará ingresar los datos de la cuenta de npm previamente creada.
+   - Si el ingreso fue correcto, se puede verificar con el comando:
+     ```bash
+     npm whoami
+     ```
+     que retornará el usuario logueado.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+5. **Subir la librería a npm:**  
+   Ir a la carpeta `dist` donde están todos los archivos generados al compilar y ejecutar el siguiente comando:
+   ```bash
+   npm publish
+	```
+	
+6. **Compartir paquete**
+Por ultimo en el perfil de la cuenta npm en la sección Packages se pueden ver todos los paquetes subidos y visitarlos para obtener información sobre la documentación como asi también el script para su instalación el cual puede ser compartido con todos los clientes intersados.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Links de interes**
+Para más información visitar los siguientes links:
+- https://angular.dev/tools/libraries/creating-libraries
+- https://medium.com/angular-in-depth/complete-beginner-guide-to-publish-an-angular-library-to-npm-d42343801660
